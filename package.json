@@ -47,6 +47,7 @@
   ],
   "dependencies": {
     "@loopback/authentication": "^4.0.0",
+    "@loopback/authorization": "^0.5.0",
     "@loopback/boot": "^2.0.0",
     "@loopback/context": "^3.0.0",
     "@loopback/core": "^2.0.0",

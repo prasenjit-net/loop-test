@@ -9,7 +9,6 @@ export interface Credentials {
 
 export class BasicAuthStrategyService implements AuthenticationStrategy {
     name = 'basic';
-    unAuthorized: Error = {name: 'Unauthorized', message: 'Unauthorized'};
 
     constructor() {
     }
@@ -21,6 +20,8 @@ export class BasicAuthStrategyService implements AuthenticationStrategy {
             return {
                 [securityId]: credentials.username,
                 name: credentials.username,
+                email: 'prasenjit@prasenjit.net',
+                roles: ['BASIC'],
             };
         } else {
             throw new HttpErrors.Unauthorized(`Invalid username or password.`);

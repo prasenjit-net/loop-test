@@ -1,0 +1,7 @@
+# curl -X GET "http://[::1]:3000/ping" -H "accept: application/json"
+GET http://localhost:3000/ping
+accept: application/json
+Authorization: Basic user user
+
+###
+

@@ -7,7 +7,14 @@ import {ServiceMixin} from '@loopback/service-proxy';
 import path from 'path';
 import {MySequence} from './sequence';
 import {AuthenticationComponent, registerAuthenticationStrategy} from "@loopback/authentication";
-import {BasicAuthStrategyService} from "./services";
+import {
+    AuthorizationBindings,
+    AuthorizationComponent,
+    AuthorizationDecision,
+    AuthorizationOptions,
+    AuthorizationTags
+} from "@loopback/authorization";
+import {BasicAuthStrategyService, MyAuthorizationProvider} from "./services";
 
 export class LoopTestApplication extends BootMixin(
     ServiceMixin(RepositoryMixin(RestApplication)),
@@ -26,8 +33,21 @@ export class LoopTestApplication extends BootMixin(
             path: '/explorer',
         });
         this.component(RestExplorerComponent);
+
+        // configure authentication
         registerAuthenticationStrategy(this, BasicAuthStrategyService);
         this.component(AuthenticationComponent);
+
+        // configure authorization
+        const authorizationOptions: AuthorizationOptions = {
+            precedence: AuthorizationDecision.ALLOW,
+            defaultDecision: AuthorizationDecision.ALLOW,
+        };
+        this.configure(AuthorizationBindings.COMPONENT).to(authorizationOptions);
+        this.component(AuthorizationComponent);
+        this.bind('authorizationProviders.my-provider')
+            .toProvider(MyAuthorizationProvider)
+            .tag(AuthorizationTags.AUTHORIZER);
 
         this.projectRoot = __dirname;
         // Customize @loopback/boot Booter Conventions here
