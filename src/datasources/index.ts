@@ -3,4 +3,4 @@
 // This file is licensed under the Apache License 2.0.
 // License text available at http://www.apache.org/licenses/LICENSE-2.0
 
-export * from './test-int.interceptor';
+export * from './identity1.datasource';

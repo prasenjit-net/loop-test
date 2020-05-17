@@ -1,3 +1,8 @@
+// Copyright prasenjit.net 2020. All Rights Reserved.
+// Node module: loop-test
+// This file is licensed under the Apache License 2.0.
+// License text available at http://www.apache.org/licenses/LICENSE-2.0
+
 import {AuthenticationStrategy} from "@loopback/authentication";
 import {securityId, UserProfile} from '@loopback/security';
 import {HttpErrors, Request} from "@loopback/rest";
