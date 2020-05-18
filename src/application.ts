@@ -20,6 +20,8 @@ import {
     AuthorizationTags
 } from "@loopback/authorization";
 import {BasicAuthStrategyService, MyAuthorizationProvider} from "./services";
+import {HealthComponent} from "@loopback/extension-health";
+import {MetricsComponent} from '@loopback/extension-metrics';
 
 export class LoopTestApplication extends BootMixin(
     ServiceMixin(RepositoryMixin(RestApplication)),
@@ -53,6 +55,9 @@ export class LoopTestApplication extends BootMixin(
         this.bind('authorizationProviders.my-provider')
             .toProvider(MyAuthorizationProvider)
             .tag(AuthorizationTags.AUTHORIZER);
+
+        this.component(HealthComponent);
+        this.component(MetricsComponent);
 
         this.projectRoot = __dirname;
         // Customize @loopback/boot Booter Conventions here
