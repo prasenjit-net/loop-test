@@ -59,7 +59,7 @@
                 },
                 "security": [
                     {
-                        "oauth2-resource": [
+                        "token-security": [
                         ]
                     }
                 ],
@@ -151,7 +151,7 @@
                 },
                 "security": [
                     {
-                        "oauth2-resource": [
+                        "token-security": [
                         ]
                     }
                 ],
@@ -192,7 +192,7 @@
                 },
                 "security": [
                     {
-                        "oauth2-resource": [
+                        "token-security": [
                         ]
                     }
                 ],
@@ -239,7 +239,7 @@
                 },
                 "security": [
                     {
-                        "oauth2-resource": [
+                        "token-security": [
                         ]
                     }
                 ],
@@ -378,19 +378,14 @@
             }
         },
         "securitySchemes": {
-            "oauth2-resource": {
-                "openIdConnectUrl": "https://localhost:8080",
-                "type": "openIdConnect",
-                "description": "Accepts OAuth2 access token"
+            "token-security": {
+                "type": "apiKey",
+                "description": "A simple sort lived token security in the form of JWT.",
+                "name": "token",
+                "in": "header"
             }
         }
     },
-    "security": [
-        {
-            "oauth2-resource": [
-            ]
-        }
-    ],
     "tags": [
         {
             "name": "security",

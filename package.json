@@ -58,6 +58,7 @@
     "@loopback/security": "^0.2.8",
     "@loopback/service-proxy": "^2.2.0",
     "loopback-connector-mysql": "^5.4.3",
+    "loopback-connector-openapi": "^6.0.0",
     "tslib": "^1.10.0"
   },
   "devDependencies": {

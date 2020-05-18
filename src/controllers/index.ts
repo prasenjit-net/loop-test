@@ -4,3 +4,5 @@
 // License text available at http://www.apache.org/licenses/LICENSE-2.0
 
 export * from './ping.controller';
+export * from './security.controller';
+export * from './user.controller';
