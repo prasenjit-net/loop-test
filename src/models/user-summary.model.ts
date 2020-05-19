@@ -16,7 +16,8 @@ export class UserSummary {
      * Username to use for login
      */
     @property({
-        required: true, jsonSchema: {
+        required: true,
+        jsonSchema: {
             description: 'Username to use for login',
             type: 'string',
         }
@@ -27,7 +28,8 @@ export class UserSummary {
      * Email address for communication
      */
     @property({
-        required: true, jsonSchema: {
+        required: true,
+        jsonSchema: {
             description: 'Email address for communication',
             type: 'string',
         }

@@ -1,5 +1,7 @@
 import {api, operation, requestBody} from '@loopback/rest';
 import {UserCreate, UserSummary} from '../models';
+import {PersonRepository} from "../repositories";
+import {repository} from "@loopback/repository";
 
 /**
  * The controller class is generated from OpenAPI spec with operations tagged
@@ -148,7 +150,12 @@ import {UserCreate, UserSummary} from '../models';
     paths: {},
 })
 export class UserController {
-    constructor() {
+    private personRepository: PersonRepository;
+
+    constructor(
+        @repository(PersonRepository) personRepository: PersonRepository
+    ) {
+        this.personRepository = personRepository;
     }
 
     /**
@@ -195,7 +202,16 @@ export class UserController {
         description: 'List all available users',
     })
     async listUsers(): Promise<UserSummary[]> {
-        throw new Error('Not implemented');
+        const users = await this.personRepository.find();
+        if (users && users.length > 0) {
+            return users.map(value => {
+                return new UserSummary(
+                    {firstName: value.firstName, lastName: value.lastName}
+                );
+            });
+        } else {
+            return [];
+        }
     }
 
     /**
@@ -261,7 +277,11 @@ export class UserController {
         },
         required: true,
     }) _requestBody: UserCreate): Promise<UserSummary> {
-        throw new Error('Not implemented');
+        const person = await this.personRepository.create({
+            firstName: _requestBody.firstName,
+            lastName: _requestBody.lastName
+        });
+        return new UserSummary({firstName: person.firstName});
     }
 
 }

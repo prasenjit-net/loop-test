@@ -1,6 +1,12 @@
 import {Entity, model, property} from '@loopback/repository';
 
-@model()
+@model({
+    settings: {
+        mysql: {
+            table: 'person'
+        }
+    }
+})
 export class Person extends Entity {
     @property({
         type: 'number',
@@ -12,13 +18,19 @@ export class Person extends Entity {
     @property({
         type: 'string',
         required: true,
+        mysql: {
+            columnName: 'first_name',
+        }
     })
-    first_name: string;
+    firstName: string;
 
     @property({
         type: 'string',
+        mysql: {
+            columnName: 'last_name',
+        }
     })
-    last_name?: string;
+    lastName?: string;
 
 
     constructor(data?: Partial<Person>) {
